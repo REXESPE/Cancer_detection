@@ -1,0 +1,312 @@
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.notification.success {
+    background-color: var(#00ffc4);
+}
+
+.notification.error {
+    background-color: #f44336;
+}
+
+/* Video feed container improvements */
+.video-container {
+    transition: transform 0.3s ease;
+}
+
+.video-container:hover {
+    transform: scale(1.02);
+}
+
+/* Button improvements */
+.controls button {
+    position: relative;
+    overflow: hidden;
+}
+
+.controls button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.controls button:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* Loading state */
+.loading {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Improved header shadow */
+
+
+/* Improved video feed border */
+.video-feed {
+    border: 3px solid var(#a2ff00);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-feed:hover {
+    box-shadow: 0 0 30px rgba(76, 175, 80, 0.4);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .video-container {
+        margin: 10px auto;
+    }
+
+    .notification {
+        bottom: 10px;
+        right: 10px;
+        padding: 10px 20px;
+    }
+}
+
+/* Dark theme enhancements */
+@media (prefers-color-scheme: dark) {
+    .video-container {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    button:disabled {
+        background-color: #4a5568;
+    }
+}
+
+/* Focus states for accessibility */
+button:focus {
+    outline: 3px solid rgba(76, 175, 80, 0.5);
+    outline-offset: 2px;
+}
+
+
+/* Si prefieres usar una fuente de Google Fonts, como "Roboto" */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+
+
+/* Status indicator */
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-indicator.active {
+    background-color: var(#00ff0d);
+    box-shadow: 0 0 10px var(#3a8000);
+}
+
+.status-indicator.inactive {
+    background-color: #718096;
+}
+button {
+    background-color: #4CAF50; /* Fondo verde */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interior */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cambia el cursor cuando pasas sobre el botón */
+    transition: background-color 0.3s; /* Transición suave para el color */
+}
+
+/* Estilo al pasar el mouse sobre el botón */
+button:hover {
+    background-color: #45a049; /* Fondo verde más oscuro */
+}
+
+/* Estilo para cuando el botón está deshabilitado */
+button:disabled {
+    background-color: #ccc; /* Fondo gris */
+    cursor: not-allowed; /* Cursor deshabilitado */
+}
+/* Estilos para el título principal */
+.header-title {
+    font-size: 36px; /* Tamaño grande */
+    font-weight: bold; /* Negrita */
+    text-align: center; /* Alinear al centro */
+    color: #a59d2c; /* Color del texto */
+    margin-top: 20px; /* Margen superior */
+}
+
+/* Estilos para el subtítulo */
+.header-subtitle {
+    font-size: 24px; /* Tamaño de fuente más pequeño que el título */
+    text-align: center;
+    color: #a59d2c; /* Color más claro */
+    margin-top: 10px;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    background-color: #262332; /* Fondo azul claro */
+    color: #00796b; /* Texto en un tono verde azulado */
+}
+
+/* Estilo para el encabezado */
+header {
+    background-color: #3f5663; /* Azul oscuro */
+    color: #a3ba15;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Título principal */
+.header-title {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* Subtítulo */
+.header-subtitle {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+/* Información del grupo */
+.group-info {
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+/* Estilo para el área principal */
+main {
+    padding: 20px;
+}
+
+/* Estilo para los botones */
+button {
+    background-color: #039be5; /* Azul brillante */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; /* El botón ocupa todo el ancho */
+    max-width: 300px; /* Máximo ancho */
+    margin: 20px auto; /* Centrado */
+}
+
+/* Efecto hover para los botones */
+button:hover {
+    background-color: #0288d1; /* Azul oscuro al pasar el ratón */
+}
+
+/* Estilo para el botón deshabilitado */
+button:disabled {
+    background-color: #b3e5fc; /* Azul claro para el botón deshabilitado */
+    cursor: not-allowed;
+}
+
+/* Estilo para los contenedores de video */
+.video-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Estilo para el feed de video */
+.video-feed {
+    width: 100%;
+    max-width: 600px; /* Ajustar el tamaño máximo */
+    border: 2px solid #1a1f25; /* Borde azul alrededor del video */
+    border-radius: 10px;
+}
+
+/* Notificaciones */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 16px;
+}
+
+/* Notificación de éxito */
+.notification.success {
+    background-color: #4caf50; /* Verde para éxito */
+}
+
+/* Notificación de error */
+.notification.error {
+    background-color: #f44336; /* Rojo para error */
+}
+
+/* Animaciones de las notificaciones */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+.logos-container {
+    display: flex; /* Usar flexbox */
+    justify-content: center; /* Centra los logos horizontalmente */
+    align-items: center; /* Alinea los logos verticalmente en el centro */
+    gap: 20px; /* Espacio entre los logos (ajustar según sea necesario) */
+    margin-bottom: 20px; /* Espacio debajo de los logos */
+}
+
+/* Estilo para los logos */
+.logo {
+    width: 150px; /* Ajusta el tamaño de los logos según sea necesario */
+    height: auto; /* Mantiene la proporción del logo */
+}

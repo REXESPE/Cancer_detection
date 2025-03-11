@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de Cáncer de Piel - ESPE</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logos-container">
+            <!-- Logos de la universidad y proyecto -->
+            <img src="/static/espe.png" alt="Logo ESPE" class="logo">
+            <img src="/static/softwar1.png" alt="Logo Software" class="logo">
+        </div>
+        <h1 class="header-title">Universidad de las Fuerzas Armadas ESPE</h1>
+        <h2 class="header-subtitle">Sistema de Detección para el Cáncer de Piel</h2>
+    </header>
+
+    <main>
+        <!-- Contenedor de video en streaming -->
+        <div class="video-container">
+            <img class="video-feed" src="/video" alt="Video Stream">
+        </div>
+        <!-- Botón para capturar foto -->
+        <div class="controls">
+            <button
+                id="photoButton"
+                onclick="takePhoto()"
+                disabled
+                title="Esperando detección de cáncer de piel"
+            >
+                Tomar Foto y Generar Informe
+            </button>
+        </div>
+    </main>
+
+    <script>
+        // Función para capturar la foto y generar el PDF
+        async function takePhoto() {
+            try {
+                const response = await fetch('/take-photo', { method: 'GET' });
+                if (response.ok) {
+                    const result = await response.json();
+                    showNotification('Foto tomada y PDF generado con éxito');
+                    window.open(`/download-pdf/${result.detection_id}`, '_blank');
+                } else {
+                    showNotification('Error al procesar la imagen', 'error');
+                }
+            } catch (error) {
+                showNotification('Error de conexión', 'error');
+            }
+        }
+
+        // Mostrar notificaciones dinámicas
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.padding = '15px 25px';
+            notification.style.borderRadius = '8px';
+            notification.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336';
+            notification.style.color = '#FFF';
+            notification.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            notification.style.zIndex = '1000';
+            notification.style.transition = 'opacity 0.5s ease';
+            notification.style.opacity = '1';
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        // Verificar continuamente el estado de detección
+        setInterval(async () => {
+            try {
+                const response = await fetch('/detection-status');
+                const data = await response.json();
+                const button = document.getElementById('photoButton');
+                button.disabled = !data.detected;
+                button.title = data.detected
+                    ? 'Tomar foto y generar informe'
+                    : 'Esperando detección de cáncer de piel';
+            } catch (error) {
+                console.error('Error al verificar el estado de detección:', error);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
